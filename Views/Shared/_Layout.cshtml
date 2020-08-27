@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TaskManager</a>
+    <header style="background-color: aliceblue;">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-l border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/image/logo.png" width="90px" height="70px" />ОТЧЁТ</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -20,10 +20,10 @@
                 {
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li style="padding: 0 10px"><a asp-area="" asp-controller="Roles" asp-action="Index">Пользователи</a></li>
-                            <li style="padding: 0 10px"><a asp-area="" asp-controller="Positions" asp-action="Index">Должности</a></li>
-                            <li style="padding: 0 10px"><a asp-area="" asp-controller="QualificationLevels" asp-action="Index">Уровень знаний</a></li>
-                            <li style="padding: 0 10px"><a asp-area="" asp-controller="Utils" asp-action="Index">Конфигурации</a></li>
+                            <li style="padding: 0 10px"><a asp-area="" asp-controller="Roles" asp-action="Index">ПОЛЬЗОВАТЕЛИ</a></li>
+                            <li style="padding: 0 10px"><a asp-area="" asp-controller="Positions" asp-action="Index">ДОЛЖНОСТИ</a></li>
+                            <li style="padding: 0 10px"><a asp-area="" asp-controller="QualificationLevels" asp-action="Index">УРОВЕНЬ ЗНАНИЙ</a></li>
+                            <li style="padding: 0 10px"><a asp-area="" asp-controller="Utils" asp-action="Index">КОНФИГУРАЦИИ</a></li>
 
                         </ul>
                     </div>
@@ -32,8 +32,8 @@
                 {
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li style="padding: 0 10px"><a asp-area="" asp-controller="Projects" asp-action="Index">Проекты</a></li>
-                            <li style="padding: 0 10px"><a asp-area="" asp-controller="Projects" asp-action="ReportSelect">Отчеты</a></li>
+                            <li style="padding: 0 10px"><a asp-area="" asp-controller="Projects" asp-action="Index">ПРОЕКТЫ</a></li>
+                            <li style="padding: 0 10px"><a asp-area="" asp-controller="Projects" asp-action="ReportSelect">ОТЧЁТЫ</a></li>
                         </ul>
                     </div>
                 }
@@ -41,7 +41,7 @@
                 {
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li style="padding: 0 10px"><a asp-area="" asp-controller="Tasks" asp-action="UserProject">Мои проекты</a></li>
+                            <li style="padding: 0 10px"><a asp-area="" asp-controller="Tasks" asp-action="UserProject">МОИ ПРОЕКТЫ</a></li>
                         </ul>
                     </div>
                 }
@@ -55,9 +55,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted text-center" style="background-color: aliceblue;">
         <div class="container">
-            &copy; 2020 - TaskManager - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2020 - ГП "Соцсервис"
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

@@ -36,4 +36,51 @@
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Areas\Identity\Pages\Account\Login.cshtml" />
+    <None Include="Areas\Identity\Pages\Account\Register.cshtml" />
+    <None Include="Areas\Identity\Pages\Account\_ViewImports.cshtml" />
+    <None Include="Areas\Identity\Pages\_ValidationScriptsPartial.cshtml" />
+    <None Include="Areas\Identity\Pages\_ViewImports.cshtml" />
+    <None Include="Areas\Identity\Pages\_ViewStart.cshtml" />
+    <None Include="Views\Positions\Create.cshtml" />
+    <None Include="Views\Positions\Delete.cshtml" />
+    <None Include="Views\Positions\Details.cshtml" />
+    <None Include="Views\Positions\Edit.cshtml" />
+    <None Include="Views\Positions\Index.cshtml" />
+    <None Include="Views\Projects\Create.cshtml" />
+    <None Include="Views\Projects\CreateModuleForProject.cshtml" />
+    <None Include="Views\Projects\Delete.cshtml" />
+    <None Include="Views\Projects\DeleteModuleForProject.cshtml" />
+    <None Include="Views\Projects\Details.cshtml" />
+    <None Include="Views\Projects\DetailsModuleForProject.cshtml" />
+    <None Include="Views\Projects\Edit.cshtml" />
+    <None Include="Views\Projects\EditModuleForProject.cshtml" />
+    <None Include="Views\Projects\EditUserForProject.cshtml" />
+    <None Include="Views\Projects\Index.cshtml" />
+    <None Include="Views\Projects\ModuleForProject.cshtml" />
+    <None Include="Views\Projects\ReportSelect.cshtml" />
+    <None Include="Views\Projects\TaskForModule.cshtml" />
+    <None Include="Views\QualificationLevels\Create.cshtml" />
+    <None Include="Views\QualificationLevels\Delete.cshtml" />
+    <None Include="Views\QualificationLevels\Details.cshtml" />
+    <None Include="Views\QualificationLevels\Edit.cshtml" />
+    <None Include="Views\QualificationLevels\Index.cshtml" />
+    <None Include="Views\Roles\Create.cshtml" />
+    <None Include="Views\Roles\Delete.cshtml" />
+    <None Include="Views\Roles\Edit.cshtml" />
+    <None Include="Views\Roles\Index.cshtml" />
+    <None Include="Views\Roles\ReportSelect.cshtml" />
+    <None Include="Views\Roles\UserCreate.cshtml" />
+    <None Include="Views\Roles\UserDelete.cshtml" />
+    <None Include="Views\Roles\UserEdit.cshtml" />
+    <None Include="Views\Roles\UserList.cshtml" />
+    <None Include="Views\Roles\UserListByRole.cshtml" />
+    <None Include="Views\Utils\Create.cshtml" />
+    <None Include="Views\Utils\Delete.cshtml" />
+    <None Include="Views\Utils\Details.cshtml" />
+    <None Include="Views\Utils\Edit.cshtml" />
+    <None Include="Views\Utils\Index.cshtml" />
+  </ItemGroup>
+
 </Project>
