@@ -1,0 +1,44 @@
+﻿@model IEnumerable<TaskManager.Data.Project>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Проекты</h1>
+
+<p>
+    <a asp-action="Create">Создать проект</a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfBirth)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfBirth)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Детали</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a> |
+                    <a class="btn btn-sm btn-primary" asp-action="EditUserForProject" asp-route-id="@item.Id">Список исполнителей</a>
+                    <a class="btn btn-sm btn-primary" asp-action="ModuleForProject" asp-route-id="@item.Id">Список модулей</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

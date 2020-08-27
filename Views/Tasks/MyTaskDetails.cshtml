@@ -1,0 +1,60 @@
+﻿@model TaskManager.Data.Task
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Подробная информация</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Описание
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Модуль
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Module.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Примечание
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Причина невыполнения
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Appendix.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Пользователь
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ApplicationUser.UserName)
+        </dd>
+
+        <dt class="col-sm-2">
+            Статус задачи
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Status.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="EditTaskForModule" asp-route-id="@Model.Id">Изменить</a> |
+    <a asp-action="TaskForModule" asp-route-id="@Model.ModuleId">Назад к списку</a>
+</div>

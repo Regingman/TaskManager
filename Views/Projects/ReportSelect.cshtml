@@ -1,0 +1,42 @@
+﻿@model TaskManager.Models.ReportViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Формирование отчетов</h1>
+<span class="text-danger">@ViewBag.ErrorMassage</span>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ReportSelect">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="userId" class="control-label"></label>
+                <select asp-for="userId" class="form-control" asp-items="ViewBag.userId"></select>
+                <span asp-validation-for="userId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstDate" class="control-label"></label>
+                <input asp-for="FirstDate" class="form-control" />
+                <span asp-validation-for="FirstDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastDate" class="control-label"></label>
+                <input asp-for="LastDate" class="form-control" />
+                <span asp-validation-for="LastDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Сформировать отчет" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="index">Назад</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

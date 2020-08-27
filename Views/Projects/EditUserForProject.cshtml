@@ -1,0 +1,16 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model TaskManager.Models.ProjectEmployeeModel
+
+<h2>Изменение исполнителей для проекта: @Model.projectName</h2>
+
+<form asp-action="EditUserForProject" method="post">
+    <input type="hidden" name="projectId" value="@Model.projectId" />
+    <div class="form-group">
+        @foreach (TaskManager.Data.ApplicationUser user in Model.allUsers)
+        {
+            <input type="checkbox" name="users" value="@user.UserName"
+                   @(Model.UserInProject.Contains(user.UserName) ? "checked=\"checked\"" : "") />@user.UserName<br />
+            }
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>

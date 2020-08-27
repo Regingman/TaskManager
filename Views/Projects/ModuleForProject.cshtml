@@ -1,0 +1,52 @@
+﻿@model IEnumerable<TaskManager.Data.Module>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>
+    Модули проекта:
+    @Html.DisplayNameFor(model => model.Project.Name)
+</h1>
+
+<p>
+    <a asp-action="CreateModuleForProject">Добавить модуль</a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                Название
+            </th>
+            <th>
+                Дата завершения
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfBirth)
+                </td>
+                <td>
+                    <a asp-action="EditModuleForProject" asp-route-id="@item.Id">Изменить</a> |
+                    <a asp-action="DetailsModuleForProject" asp-route-id="@item.Id">Детали</a> |
+                    <a asp-action="DeleteModuleForProject" asp-route-id="@item.Id">Удалить</a> |
+                    <a class="btn btn-sm btn-primary" asp-action="TaskForModule" asp-route-id="@item.Id">Список задач</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div>
+    <a asp-action="Index">Назад</a>
+</div>

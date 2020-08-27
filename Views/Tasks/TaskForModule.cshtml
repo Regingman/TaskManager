@@ -1,0 +1,73 @@
+﻿@model IEnumerable<TaskManager.Data.Task>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Задачи в модуле @ViewBag.ModuleName</h1>
+
+<p>
+    <a asp-action="CreateTaskForModule" asp-route-id="@ViewBag.ModuleId">Добавить задачу в модуль</a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                Описание
+            </th>
+            <th>
+                Статус
+            </th>
+            <th>
+                Причина невыполнения
+            </th>
+            <th>
+                Срок выполнения
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in @Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Note)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfBirth)
+                </td>
+
+                <td>
+                    <a asp-action="EditTaskForModule" asp-route-id="@item.Id">Изменить</a> |
+                    <a asp-action="MyTaskDetails" asp-route-id="@item.Id">Подробнее</a> |
+                    <a asp-action="DeleteTaskForModule" asp-route-id="@item.Id">Удалить</a>|
+                    @if (@item.Appendix == null)
+                    {
+                        <a class="btn btn-sm btn-primary" asp-action="CreateAppendix" asp-route-id="@item.Id">Добавить приложение</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-sm btn-primary" asp-action="DetailsAppendix" asp-route-id="@item.AppendixId">Просмотреть примечание</a>
+                    }
+
+                    @if (@item.StatusId == 1)
+                    {
+                        <a class="btn btn-sm btn-primary" asp-action="TaskComplete" asp-route-id="@item.Id">Завершить задачу</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="UserModule" asp-route-id="@ViewBag.ProjectId">Назад</a>
+</div>

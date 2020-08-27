@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model TaskManager.Data.ApplicationUser
+
+<h2>Редактирование профиля пользователя @Model.UserName</h2>
+
+<form asp-action="UserEdit" method="post">
+    <div class="form-group">
+
+        <input type="hidden" name="userId" value="@Model.Id" />
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PhoneNumber"></label>
+            <input asp-for="PhoneNumber" class="form-control" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PositionId"></label>
+            <select asp-for="PositionId" class="form-control" asp-items="ViewBag.PositionId"></select>
+            <span asp-validation-for="PositionId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="QualificationLevelId"></label>
+            <select asp-for="QualificationLevelId" class="form-control" asp-items="ViewBag.QualificationLevelId"></select>
+            <span asp-validation-for="QualificationLevelId" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="UserName"></label>
+            <input asp-for="UserName" class="form-control" />
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

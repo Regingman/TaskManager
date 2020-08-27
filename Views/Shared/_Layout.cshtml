@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TaskManager</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TaskManager</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                @if (User.IsInRole("ADMIN"))
+                {
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li style="padding: 0 10px"><a asp-area="" asp-controller="Roles" asp-action="Index">Пользователи</a></li>
+                            <li style="padding: 0 10px"><a asp-area="" asp-controller="Positions" asp-action="Index">Должности</a></li>
+                            <li style="padding: 0 10px"><a asp-area="" asp-controller="QualificationLevels" asp-action="Index">Уровень знаний</a></li>
+                            <li style="padding: 0 10px"><a asp-area="" asp-controller="Utils" asp-action="Index">Конфигурации</a></li>
+
+                        </ul>
+                    </div>
+                }
+                @if (User.IsInRole("PROJECT MANAGER"))
+                {
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li style="padding: 0 10px"><a asp-area="" asp-controller="Projects" asp-action="Index">Проекты</a></li>
+                            <li style="padding: 0 10px"><a asp-area="" asp-controller="Projects" asp-action="ReportSelect">Отчеты</a></li>
+                        </ul>
+                    </div>
+                }
+                @if (User.IsInRole("USER"))
+                {
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li style="padding: 0 10px"><a asp-area="" asp-controller="Tasks" asp-action="UserProject">Мои проекты</a></li>
+                        </ul>
+                    </div>
+                }
+                <partial name="_LoginPartial" />
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - TaskManager - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

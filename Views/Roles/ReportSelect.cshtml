@@ -1,0 +1,37 @@
+﻿@model TaskManager.Models.ReportViewModel
+
+@{
+    ViewBag.Title = "ReportSelecet";
+}
+
+<h2>Сформировать отчет</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+<fieldset>
+    <legend>@ViewBag.UserName</legend>
+    <input type="hidden" name="userId" value="@ViewBag.Id" />
+    <div class="editor-label">
+        @Html.LabelFor(model => model.FirstDate)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.FirstDate)
+        @Html.ValidationMessageFor(model => model.FirstDate)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.LastDate)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.LastDate)
+        @Html.ValidationMessageFor(model => model.LastDate)
+    </div>
+
+    <p>
+        <input type="submit" value="Сформировать отчет" />
+    </p>
+</fieldset>
+}
+

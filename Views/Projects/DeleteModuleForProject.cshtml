@@ -1,0 +1,39 @@
+﻿@model TaskManager.Data.Module
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Удалить</h1>
+
+<h3>Вы уверены что хотите удалить данный модуль?</h3>
+<div>
+    <h4>Модуль</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Название
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Проект
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Project.Id)
+        </dd>
+        <dt class="col-sm-2">
+            срок завершения
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+    </dl>
+
+    <form asp-action="DeleteModuleForProject">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Удалить" class="btn btn-danger" /> |
+        <a asp-action="ModuleForProject" asp-route-id="@Model.ProjectId">Back to List</a>
+    </form>
+</div>
