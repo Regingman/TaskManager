@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header style="background-color: aliceblue;">
+    <header style="        background-color: #d1d1d1;">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-l border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/image/logo.png" width="90px" height="70px" />ОТЧЁТ</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><!--<img src="~/image/logo.png" width="90px" height="70px" />-->ОТЧЁТ</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -24,6 +24,7 @@
                             <li style="padding: 0 10px"><a asp-area="" asp-controller="Positions" asp-action="Index">ДОЛЖНОСТИ</a></li>
                             <li style="padding: 0 10px"><a asp-area="" asp-controller="QualificationLevels" asp-action="Index">УРОВЕНЬ ЗНАНИЙ</a></li>
                             <li style="padding: 0 10px"><a asp-area="" asp-controller="Utils" asp-action="Index">КОНФИГУРАЦИИ</a></li>
+                            <li style="padding: 0 10px"><a asp-area="" asp-controller="Status" asp-action="Index">СТАТУС</a></li>
 
                         </ul>
                     </div>

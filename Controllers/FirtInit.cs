@@ -13,6 +13,9 @@ namespace TaskManager.Controllers
         {
             string adminEmail = "te@mail.ru";
             string password = "Test123!";
+
+
+
             if (await roleManager.FindByNameAsync("ADMIN") == null)
             {
                 await roleManager.CreateAsync(new IdentityRole("ADMIN"));

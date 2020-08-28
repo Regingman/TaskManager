@@ -16,7 +16,7 @@ using TemplateEngine.Docx;
 namespace TaskManager.Controllers
 {
 
-   // [Authorize(Roles = "ADMIN")]
+   [Authorize(Roles = "ADMIN")]
     public class RolesController : Controller
     {
         RoleManager<IdentityRole> _roleManager;

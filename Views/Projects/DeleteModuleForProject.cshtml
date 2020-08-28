@@ -33,6 +33,6 @@
     <form asp-action="DeleteModuleForProject">
         <input type="hidden" asp-for="Id" />
         <input type="submit" value="Удалить" class="btn btn-danger" /> |
-        <a asp-action="ModuleForProject" asp-route-id="@Model.ProjectId">Назад</a>
+        <a asp-action="ModuleForProject" asp-route-id="@Model.ProjectId" class="btn btn-secondary">Назад</a>
     </form>
 </div>

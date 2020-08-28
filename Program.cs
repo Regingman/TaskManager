@@ -17,7 +17,8 @@ namespace TaskManager
     {
         public static async System.Threading.Tasks.Task Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+
+         
             var host = CreateHostBuilder(args).Build();
 
             using (var scope = host.Services.CreateScope())
@@ -35,7 +36,7 @@ namespace TaskManager
                     logger.LogError(ex, "An error occurred while seeding the database.");
                 }
             }
-
+            CreateHostBuilder(args).Build().Run();
             host.Run();
         }
 

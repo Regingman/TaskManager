@@ -35,9 +35,9 @@
                     @Html.DisplayFor(modelItem => item.DateOfBirth)
                 </td>
                 <td>
-                    <a asp-action="EditModuleForProject" asp-route-id="@item.Id">Изменить</a> |
-                    <a asp-action="DetailsModuleForProject" asp-route-id="@item.Id">Детали</a> |
-                    <a asp-action="DeleteModuleForProject" asp-route-id="@item.Id">Удалить</a> |
+                    <a asp-action="EditModuleForProject" asp-route-id="@item.Id" class="btn btn-info">Изменить</a> |
+                    <a asp-action="DetailsModuleForProject" asp-route-id="@item.Id" class="btn btn-dark">Детали</a> |
+                    <a asp-action="DeleteModuleForProject" asp-route-id="@item.Id" class="btn btn-danger">Удалить</a> |
                     <a class="btn btn-sm btn-primary" asp-action="TaskForModule" asp-route-id="@item.Id">Список задач</a>
 
                 </td>
@@ -48,5 +48,5 @@
 
 
 <div>
-    <a asp-action="Index">Назад</a>
+    <a asp-action="Index" class="btn btn-secondary">Назад</a>
 </div>
