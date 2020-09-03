@@ -103,7 +103,6 @@ namespace TaskManager.Data
 
     public class Project
     {
-
         public int Id { get; set; }
 
         [Display(Name = "Название")]

@@ -95,6 +95,7 @@ namespace TaskManager.Controllers
             {
                 return NotFound();
             }
+            ViewBag.firstDate = project.DateOfBirth.ToString("yyyy-MM-dd");
             return View(project);
         }
 
@@ -270,15 +271,17 @@ namespace TaskManager.Controllers
                 .Include(e => e.Project)
                 .Where(e => e.ProjectId == id)
                 .ToList();
+            ViewBag.ProjectId = id;
             return View(model);
         }
 
 
 
 
-        public IActionResult CreateModuleForProject()
+        public IActionResult CreateModuleForProject(int id)
         {
-            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Name");
+            ViewBag.ProjectId = id;
+            ViewBag.firstDate = DateTime.Now.ToString("yyyy-MM-dd");
             return View();
         }
 
@@ -287,14 +290,16 @@ namespace TaskManager.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateModuleForProject([Bind("Id,Name,ProjectId,DateOfBirth")] Module @module)
+        public async Task<IActionResult> CreateModuleForProject(int id, [Bind("Id,Name,ProjectId,DateOfBirth")] Module @module)
         {
             if (ModelState.IsValid)
             {
                 @module.CreateDate = DateTime.Now;
                 @module.UpdateDate = DateTime.Now;
+                @module.ProjectId = id;
+                @module.Id = 0;
                 var project = _context.Projects.Find(@module.ProjectId);
-                if (!dateScale(false, @module.DateOfBirth, project.UpdateDate))
+                if (!dateScale(false, @module.DateOfBirth, project.DateOfBirth))
                 {
                     ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Name");
                     ViewBag.ErrorMassage = "Срок модуля не может превышать срок проекта. Дата завершения проекта: " + project.UpdateDate.ToString("D");
@@ -304,7 +309,9 @@ namespace TaskManager.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("ModuleForProject", new { id = @module.ProjectId });
             }
-            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Name", @module.ProjectId);
+            ViewBag.ProjectId = @module.ProjectId;
+            ViewBag.firstDate = DateTime.Now.ToString("yyyy-MM-dd");
+
             return View(@module);
         }
 
@@ -339,8 +346,9 @@ namespace TaskManager.Controllers
 
             if (ModelState.IsValid)
             {
-                var project = _context.Projects.Find(module.ProjectId);
-                if (!dateScale(false, @module.DateOfBirth, project.UpdateDate))
+                var tempModule = _context.Modules.Find(id);
+                var project = _context.Projects.Find(tempModule.ProjectId);
+                if (!dateScale(false, @module.DateOfBirth, project.DateOfBirth))
                 {
                     var moduletemp = await _context.Modules.FindAsync(id);
                     ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Name");
@@ -349,7 +357,10 @@ namespace TaskManager.Controllers
                 }
                 try
                 {
-                    _context.Update(@module);
+                    tempModule.DateOfBirth = @module.DateOfBirth;
+                    tempModule.CreateDate = @module.CreateDate;
+                    tempModule.Name = @module.Name;
+                    _context.Update(tempModule);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -425,6 +436,10 @@ namespace TaskManager.Controllers
         public IActionResult ReportSelect()
         {
             ViewData["userId"] = new SelectList(_context.ApplicationUsers, "Id", "UserName");
+            DateTime startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            DateTime endDate = startDate.AddMonths(1).AddDays(-1);
+            ViewBag.firstDate = startDate.ToString("yyyy-MM-dd");
+            ViewBag.secondDate = endDate.ToString("yyyy-MM-dd");
             ViewBag.ErrorMassage = "";
             return View();
         }
@@ -435,12 +450,16 @@ namespace TaskManager.Controllers
             if (!dateScale(false, report.FirstDate, report.LastDate))
             {
                 ViewData["userId"] = new SelectList(_context.ApplicationUsers, "Id", "UserName");
+                DateTime startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                DateTime endDate = startDate.AddMonths(1).AddDays(-1);
+                ViewBag.firstDate = startDate.ToString("yyyy-MM-dd");
+                ViewBag.secondDate = endDate.ToString("yyyy-MM-dd");
                 ViewBag.ErrorMassage = "Задайте верные данные, конечная дата должна быть пожже начальной или они должны быть равны";
                 return View();
             }
-
-            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "template.docx");
-            string templatePath = AppDomain.CurrentDomain.BaseDirectory + "temp.docx";
+            string uploadPath = Path.Combine(hostingEnvironment.WebRootPath, "template");
+            string path = Path.Combine(uploadPath, "template.docx");
+            string templatePath = Path.Combine(uploadPath + "temp.docx");
             System.IO.File.Copy(path, templatePath, true);
             List<ProjectReport> projectReports = new List<ProjectReport>();
             var user = _context.ApplicationUsers.FirstOrDefault(e => e.Id == report.userId);
@@ -578,9 +597,17 @@ namespace TaskManager.Controllers
         {
             if (flag)
             {
-                if (firstDate.Year >= secondDate.Year)
+                if (firstDate.Year > secondDate.Year)
                 {
-                    if (firstDate.Month >= secondDate.Month)
+                    return true;
+                }
+                else if (firstDate.Year == secondDate.Year)
+                {
+                    if (firstDate.Month > secondDate.Month)
+                    {
+                        return true;
+                    }
+                    else if (firstDate.Month == secondDate.Month)
                     {
                         if (firstDate.Day >= secondDate.Day)
                         {
@@ -591,9 +618,17 @@ namespace TaskManager.Controllers
             }
             else
             {
-                if (secondDate.Year >= firstDate.Year)
+                if (secondDate.Year > firstDate.Year)
+                {
+                    return true;
+                }
+                else if (secondDate.Year == firstDate.Year)
                 {
                     if (secondDate.Month >= firstDate.Month)
+                    {
+                        return true;
+                    }
+                    else if (firstDate.Month == secondDate.Month)
                     {
                         if (secondDate.Day >= firstDate.Day)
                         {
@@ -693,16 +728,21 @@ namespace TaskManager.Controllers
             }
             ListContent imageList = new ListContent("Scientists List");
 
-
-            for (int i = 0; i < appendices.Count; i++)
+            if (appendices.Count > 0)
+                for (int i = 0; i < appendices.Count; i++)
+                {
+                    string uploadPath = Path.Combine(hostingEnvironment.WebRootPath, "images");
+                    string fileName = appendices[i].FileName;
+                    string FilePath = Path.Combine(uploadPath, fileName);
+                    //appendices[i].FileName.CopyTo(new FileStream(FilePath, FileMode.Create));
+                    imageList.AddItem(new FieldContent("CountImage", "Примечание " + (i + 1).ToString()),
+                      new ImageContent("Photo", System.IO.File.ReadAllBytes(FilePath)),
+                         new FieldContent("NameImage", appendices[i].Name));
+                }
+            if (imageList.Items == null)
             {
-                string uploadPath = Path.Combine(hostingEnvironment.WebRootPath, "images");
-                string fileName = appendices[i].FileName;
-                string FilePath = Path.Combine(uploadPath, fileName);
-                //appendices[i].FileName.CopyTo(new FileStream(FilePath, FileMode.Create));
-                imageList.AddItem(new FieldContent("CountImage", "Примечание " + (i + 1).ToString()),
-                  new ImageContent("Photo", System.IO.File.ReadAllBytes(FilePath)),
-                     new FieldContent("NameImage", appendices[i].Name));
+                imageList.AddItem(new FieldContent("CountImage", ""),
+                        new FieldContent("NameImage", ""));
             }
 
             var valuesToFill = new Content(

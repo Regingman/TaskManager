@@ -67,6 +67,7 @@ namespace TaskManager.Controllers
                     fileName = Guid.NewGuid().ToString() + "_" + appendix.FileName.FileName;
                     string FilePath = Path.Combine(uploadPath, fileName);
                     appendix.FileName.CopyTo(new FileStream(FilePath, FileMode.Create));
+                    
                 }
                 Appendix model = new Appendix();
                 model.FileName = fileName;

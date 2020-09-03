@@ -9351,19 +9351,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Abdyrakhmanov\\.nuget\\packages\\": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Abdyrakhmanov\\source\\repos\\firstProjectDeploy\\TaskManager\\TaskManager.csproj",
+      "projectUniqueName": "E:\\programming\\project\\ProjectGit\\asp net\\twoVersion\\TaskManager\\TaskManager.csproj",
       "projectName": "TaskManager",
-      "projectPath": "C:\\Users\\Abdyrakhmanov\\source\\repos\\firstProjectDeploy\\TaskManager\\TaskManager.csproj",
-      "packagesPath": "C:\\Users\\Abdyrakhmanov\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Abdyrakhmanov\\source\\repos\\firstProjectDeploy\\TaskManager\\obj\\",
+      "projectPath": "E:\\programming\\project\\ProjectGit\\asp net\\twoVersion\\TaskManager\\TaskManager.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "E:\\programming\\project\\ProjectGit\\asp net\\twoVersion\\TaskManager\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Abdyrakhmanov\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

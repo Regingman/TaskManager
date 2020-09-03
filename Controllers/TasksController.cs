@@ -292,7 +292,7 @@ namespace TaskManager.Controllers
             {
                 return NotFound();
             }
-            return View(task);
+                return View(task);
         }
 
         public async Task<IActionResult> TaskComplete(int id)
